@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>All Todos</h1>
+    <ul>
+        <% for (let i = 0; i < todos.length; i++) { %>
+            <h2><%= todos[i].title %></h2>
+            <h3><%= todos[i].id %></h3>
+            <p><%= todos[i].description %></p>
+            <li><%= todos[i].completed %></li>
+            <a href="/view/<%= todos[i].id %>">view</a>
+            <a href="/update/<%= todos[i].id %>">update</a>
+            <a href="/delete/<%= todos[i].id %>">delete</a>
+            <hr>
+        <% } %>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>single todo</h1>
+    <h2><%= todo.title %></h2>
+    <p><%= todo.description %></p>
+    <li><%= todo.completed %></li>
+    <a href="/update/<%= todo.id %>">update</a>
+    <a href="/delete/<%= todo.id %>">delete</a>
+    <a href="/">back</a>
+</body>
+</html>
