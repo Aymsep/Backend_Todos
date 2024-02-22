@@ -14,17 +14,25 @@ const {
 
 const {Sanitaze} = require('../Middlewares/Validation')
 const {Validate} = require('../Middlewares/Sanitize')
+const { isAuthenticated } = require('../Middlewares/isAuthenticated')
+const { isAuthor } = require('../Middlewares/isAuthor')
 
 
 router.get('/',GetAllTodo) //render all todos
 router.get('/delete/:id',DeleteTodo) //delete todo
 router.post('/',Sanitaze,Validate,CreateTodo) // create todo
-router.post('/update/:id',Sanitaze,Validate,UpdateTodo) // update todo
-router.get('/update/:id',renderEdit) // update todo
-router.get('/view/:id',GetSingleTodo) // get todo
-router.get('/add',RenderTodo) // add todo
-router.post('/add',Sanitaze,Validate,AddTodo) // add todo
 
+router.get('/view/:id',GetSingleTodo) // get todo
+
+
+
+router.post('/update/:id',Sanitaze,Validate,isAuthenticated,isAuthor,UpdateTodo) // update todo
+router.get('/update/:id',isAuthenticated,isAuthor,renderEdit) // update todo
+
+
+
+router.get('/add',isAuthenticated,RenderTodo) // add todo
+router.post('/add',Sanitaze,Validate,isAuthenticated,AddTodo) // add todo
 
 
 

@@ -37,7 +37,6 @@ exports.UpdateTodo = async(req, res) => {
     try{
         const id = req.params.id
         const {title,description,completed} = req.body
-        console.log(req.body)
         const result = await axiosUpdateTodos(id,{title,description,completed})
         console.log(result)
         if(!result) return res.send('Todo not found')
@@ -78,7 +77,8 @@ exports.RenderTodo = (req, res) => {
 exports.AddTodo = async(req, res) => {
     try{
         const {title,description,completed} = req.body
-        const result = await axiosCreateTodos({title,description,completed})
+       const {authorId} = req.user
+        const result = await axiosCreateTodos({title,description,completed,authorId})
         if(!result) return res.send('Todo not found')
         res.status(302).redirect('/')
     }catch(error) {
